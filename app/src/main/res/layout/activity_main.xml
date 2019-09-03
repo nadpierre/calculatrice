@@ -7,14 +7,13 @@
     android:layout_marginHorizontal="20dp"
     android:layout_marginVertical="20dp">
     <TextView
-        android:id="@+id/operation"
+        android:id="@+id/txtOperation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:textSize="30dp"
-        android:text=""/>
+        android:textSize="30dp" />
     <TextView
-        android:id="@+id/resultat"
+        android:id="@+id/txtResultat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
