@@ -7,7 +7,7 @@
     android:layout_marginHorizontal="20dp"
     android:layout_marginVertical="20dp">
     <TextView
-        android:id="@+id/txtOperation"
+        android:id="@+id/txtExpression"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
@@ -17,8 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:textSize="60dp"
-        android:text="@string/zero"/>
+        android:textSize="60dp" />
 
     <GridLayout
         android:id="@+id/grille"

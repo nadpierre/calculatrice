@@ -22,5 +22,5 @@
     <string name="racine">√</string>
     <string name="pourcent">%</string>
     <string name="inverse">1/x</string>
-    <string name="virgule">,</string>
+    <string name="virgule">.</string>
 </resources>
