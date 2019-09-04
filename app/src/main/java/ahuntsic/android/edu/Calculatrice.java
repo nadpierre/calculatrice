@@ -2,8 +2,6 @@ package ahuntsic.android.edu;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
-
 
 public class Calculatrice {
 
@@ -12,7 +10,6 @@ public class Calculatrice {
      */
     private StringBuilder expression;
     private double resultat;
-    private double dernierResultat;
 
     /**
      * Constructeur
@@ -105,6 +102,8 @@ public class Calculatrice {
                         break;
                 }
             }
+
+            this.expression.setLength(0);
         }
     }
 
@@ -134,6 +133,6 @@ public class Calculatrice {
      */
     public void effacerTout() {
         setResultat(0);
-        expression.setLength(0);
+        this.expression.setLength(0);
     }
 }

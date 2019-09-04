@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     @Override
     public void onClick(View v) {
-
         switch(v.getId()) {
             case R.id.btnZero:
                 calculatrice.saisir('0');
@@ -131,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnEgal:
                 try {
                     calculatrice.calculer();
+                    afficherExpression();
                     afficherResultat();
                 } catch (ArithmeticException e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
