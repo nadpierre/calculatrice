@@ -3,21 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginHorizontal="20dp"
-    android:layout_marginVertical="20dp">
+    android:layout_height="match_parent">
     <TextView
         android:id="@+id/txtExpression"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        android:background="@color/colorBlue"
+        android:textColor="@color/colorWhite"/>
     <TextView
         android:id="@+id/txtResultat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:textSize="60dp" />
+        android:textSize="60dp"
+        android:background="@color/colorBlue"
+        android:textColor="@color/colorWhite"/>
 
     <GridLayout
         android:id="@+id/grille"
@@ -25,7 +27,7 @@
         android:layout_height="fill_parent"
         android:columnCount="5"
         android:rowCount="5"
-        android:useDefaultMargins="true">
+        android:useDefaultMargins="false">
 
 
         <!-- Première rangée -->
@@ -38,7 +40,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/retour"
             android:textSize="25dp"
-            android:background="@drawable/bouton_moyen"/>
+            android:background="@drawable/bouton_operations"/>
         <Button
             android:id="@+id/btnEffacer"
             android:layout_width="0dp"
@@ -48,8 +50,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/effacer"
             android:textSize="25dp"
-            android:background="@drawable/bouton_fonce"
-            android:textColor="#ffffff"/>
+            android:background="@drawable/bouton_effacer"/>
         <Button
             android:id="@+id/btnEffacerTout"
             android:layout_width="0dp"
@@ -59,8 +60,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/effacerTout"
             android:textSize="25dp"
-            android:background="@drawable/bouton_fonce"
-            android:textColor="#ffffff"/>
+            android:background="@drawable/bouton_effacer" />
         <Button
             android:id="@+id/btnSigne"
             android:layout_width="0dp"
@@ -70,7 +70,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/signe"
             android:textSize="25dp"
-            android:background="@drawable/bouton_moyen"/>
+            android:background="@drawable/bouton_operations"/>
         <Button
             android:id="@+id/btnRacine"
             android:layout_width="0dp"
@@ -80,7 +80,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/racine"
             android:textSize="25dp"
-            android:background="@drawable/bouton_moyen"/>
+            android:background="@drawable/bouton_operations"/>
 
         <!-- Deuxième rangée -->
         <Button
@@ -92,7 +92,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/sept"
             android:textSize="25dp"
-            android:background="@drawable/bouton_pale"/>
+            android:background="@drawable/bouton_nombre"/>
         <Button
             android:id="@+id/btnHuit"
             android:layout_width="0dp"
@@ -102,7 +102,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/huit"
             android:textSize="25dp"
-            android:background="@drawable/bouton_pale"/>
+            android:background="@drawable/bouton_nombre"/>
         <Button
             android:id="@+id/btnNeuf"
             android:layout_width="0dp"
@@ -112,7 +112,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/neuf"
             android:textSize="25dp"
-            android:background="@drawable/bouton_pale"/>
+            android:background="@drawable/bouton_nombre"/>
         <Button
             android:id="@+id/btnDivi"
             android:layout_width="0dp"
@@ -122,7 +122,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/divi"
             android:textSize="25dp"
-            android:background="@drawable/bouton_moyen"/>
+            android:background="@drawable/bouton_arith"/>
         <Button
             android:id="@+id/btnPourcent"
             android:layout_width="0dp"
@@ -132,7 +132,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/pourcent"
             android:textSize="25dp"
-            android:background="@drawable/bouton_moyen"/>
+            android:background="@drawable/bouton_operations"/>
 
         <!-- Troisième rangée -->
         <Button
@@ -144,7 +144,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/quatre"
             android:textSize="25dp"
-            android:background="@drawable/bouton_pale"/>
+            android:background="@drawable/bouton_nombre"/>
         <Button
             android:id="@+id/btnCinq"
             android:layout_width="0dp"
@@ -154,7 +154,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/cinq"
             android:textSize="25dp"
-            android:background="@drawable/bouton_pale"/>
+            android:background="@drawable/bouton_nombre"/>
         <Button
             android:id="@+id/btnSix"
             android:layout_width="0dp"
@@ -164,7 +164,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/six"
             android:textSize="25dp"
-            android:background="@drawable/bouton_pale"/>
+            android:background="@drawable/bouton_nombre"/>
         <Button
             android:id="@+id/btnMulti"
             android:layout_width="0dp"
@@ -174,7 +174,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/multi"
             android:textSize="25dp"
-            android:background="@drawable/bouton_moyen"/>
+            android:background="@drawable/bouton_arith"/>
         <Button
             android:id="@+id/btnInverse"
             android:layout_width="0dp"
@@ -184,7 +184,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/inverse"
             android:textSize="25dp"
-            android:background="@drawable/bouton_moyen"/>
+            android:background="@drawable/bouton_operations"/>
 
         <!-- Quatrième rangée -->
         <Button
@@ -196,7 +196,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/un"
             android:textSize="25dp"
-            android:background="@drawable/bouton_pale"/>
+            android:background="@drawable/bouton_nombre"/>
 
         <Button
             android:id="@+id/btnDeux"
@@ -207,7 +207,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/deux"
             android:textSize="25dp"
-            android:background="@drawable/bouton_pale"/>
+            android:background="@drawable/bouton_nombre"/>
         <Button
             android:id="@+id/btnTrois"
             android:layout_width="0dp"
@@ -217,7 +217,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/trois"
             android:textSize="25dp"
-            android:background="@drawable/bouton_pale"/>
+            android:background="@drawable/bouton_nombre"/>
         <Button
             android:id="@+id/btnMoins"
             android:layout_width="0dp"
@@ -227,7 +227,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/moins"
             android:textSize="25dp"
-            android:background="@drawable/bouton_moyen"/>
+            android:background="@drawable/bouton_arith"/>
 
         <Button
             android:id="@+id/btnEgal"
@@ -239,7 +239,7 @@
             android:layout_gravity="fill_vertical"
             android:text="@string/egal"
             android:textSize="25dp"
-            android:background="@drawable/bouton_moyen"/>
+            android:background="@drawable/bouton_egal"/>
 
         <!-- Dernière rangée -->
         <Button
@@ -252,7 +252,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/zero"
             android:textSize="25dp"
-            android:background="@drawable/bouton_pale"/>
+            android:background="@drawable/bouton_nombre"/>
 
         <Button
             android:id="@+id/btnVirgule"
@@ -263,7 +263,7 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/virgule"
             android:textSize="25dp"
-            android:background="@drawable/bouton_moyen"/>
+            android:background="@drawable/bouton_nombre"/>
 
         <Button
             android:id="@+id/btnPlus"
@@ -274,6 +274,6 @@
             android:layout_gravity="fill_horizontal"
             android:text="@string/plus"
             android:textSize="25dp"
-            android:background="@drawable/bouton_moyen"/>
+            android:background="@drawable/bouton_arith"/>
     </GridLayout>
 </LinearLayout>

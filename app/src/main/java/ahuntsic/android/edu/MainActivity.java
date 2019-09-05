@@ -2,13 +2,13 @@ package ahuntsic.android.edu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,18 +28,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         txtExpression = (TextView) findViewById(R.id.txtExpression);
         txtResultat = (TextView) findViewById(R.id.txtResultat);
         grille = (GridLayout) findViewById(R.id.grille);
-
         calculatrice = new Calculatrice();
-
-        for(int i = 0; i < grille.getChildCount(); i++) {
-            Button bouton = (Button) grille.getChildAt(i);
-            bouton.setOnClickListener(this);
-        }
-
+        ajouterListener();
         afficherResultat();
     }
 
@@ -55,6 +48,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     public void afficherResultat(){
         txtResultat.setText(calculatrice.getResultat());
+    }
+
+
+    /**
+     * Ajouter le listener de boutons
+     */
+    public void ajouterListener(){
+        for(int i = 0; i < grille.getChildCount(); i++) {
+            Button bouton = (Button) grille.getChildAt(i);
+            bouton.setOnClickListener(this);
+        }
     }
 
     /**
@@ -109,7 +113,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 afficherExpression();
                 break;
             case R.id.btnSigne:
-
+                try {
+                    calculatrice.signe();
+                    afficherExpression();
+                    afficherResultat();
+                } catch (ArithmeticException e) {
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btnPlus:
                 calculatrice.saisir('+');
@@ -130,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnEgal:
                 try {
                     calculatrice.calculer();
-                    afficherExpression();
                     afficherResultat();
                 } catch (ArithmeticException e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -138,22 +147,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnRacine:
                 calculatrice.racineCarree();
+                afficherExpression();
                 afficherResultat();
                 break;
             case R.id.btnPourcent:
                 calculatrice.pourcentage();
+                afficherExpression();
                 afficherResultat();
                 break;
             case R.id.btnInverse:
-                calculatrice.inverse();
-                afficherResultat();
+                try {
+                    calculatrice.inverse();
+                    afficherExpression();
+                    afficherResultat();
+                } catch (ArithmeticException e) {
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btnRetour:
                 calculatrice.retourner();
                 afficherExpression();
                break;
             case R.id.btnEffacer:
-
+                try {
+                    calculatrice.effacer();
+                    afficherExpression();
+                } catch (ArithmeticException e) {
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btnEffacerTout:
                 calculatrice.effacerTout();

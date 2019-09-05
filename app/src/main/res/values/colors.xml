@@ -6,4 +6,12 @@
     <color name="colorDarkPurple">#9900cc</color>
     <color name="colorPurple">#df80ff</color>
     <color name="colorLightPurple">#f2ccff</color>
+    <color name="colorBlue">#3366ff</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorGray">#bfbfbf</color>
+    <color name="colorLightGray">#f2f2f2</color>
+    <color name="colorLightGray2">#cccccc</color>
+    <color name="colorLightGray3">#e6e6e6</color>
+    <color name="colorPink">#ffcccc</color>
+    <color name="colorCyan">#803287a8</color>
 </resources>
