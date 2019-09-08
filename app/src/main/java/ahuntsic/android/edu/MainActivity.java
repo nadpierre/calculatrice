@@ -2,7 +2,6 @@ package ahuntsic.android.edu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * Attributs
      */
 
+    final int MAX_LONGUEUR = 11;
     TextView txtExpression, txtResultat;
     GridLayout grille;
     Calculatrice calculatrice;
@@ -47,9 +47,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * Afficher le résultat dans le deuxième écran
      */
     public void afficherResultat(){
-        txtResultat.setText(calculatrice.getResultat());
+        String resultat = calculatrice.getResultat().toString();
+        String affichage = (resultat.length() > MAX_LONGUEUR) ? resultat.substring(0, MAX_LONGUEUR) : resultat;
+        txtResultat.setText(affichage);
     }
-
 
     /**
      * Ajouter le listener de boutons
@@ -69,105 +70,141 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.btnZero:
-                calculatrice.saisir('0');
+                calculatrice.saisirChiffre("0");
                 afficherExpression();
                 break;
             case R.id.btnUn:
-                calculatrice.saisir('1');
+                calculatrice.saisirChiffre("1");
                 afficherExpression();
                 break;
             case R.id.btnDeux:
-                calculatrice.saisir('2');
+                calculatrice.saisirChiffre("2");
                 afficherExpression();
                 break;
             case R.id.btnTrois:
-                calculatrice.saisir('3');
+                calculatrice.saisirChiffre("3");
                 afficherExpression();
                 break;
             case R.id.btnQuatre:
-                calculatrice.saisir('4');
+                calculatrice.saisirChiffre("4");
                 afficherExpression();
                 break;
             case R.id.btnCinq:
-                calculatrice.saisir('5');
+                calculatrice.saisirChiffre("5");
                 afficherExpression();
                 break;
             case R.id.btnSix:
-                calculatrice.saisir('6');
+                calculatrice.saisirChiffre("6");
                 afficherExpression();
                 break;
             case R.id.btnSept:
-                calculatrice.saisir('7');
+                calculatrice.saisirChiffre("7");
                 afficherExpression();
                 break;
             case R.id.btnHuit:
-                calculatrice.saisir('8');
+                calculatrice.saisirChiffre("8");
                 afficherExpression();
                 break;
             case R.id.btnNeuf:
-                calculatrice.saisir('9');
+                calculatrice.saisirChiffre("9");
                 afficherExpression();
                 break;
             case R.id.btnVirgule:
-                calculatrice.saisir('.');
+                calculatrice.saisirChiffre(".");
                 afficherExpression();
                 break;
-            case R.id.btnSigne:
+            case R.id.btnPlus:
                 try {
-                    calculatrice.signe();
+                    calculatrice.saisirOperateur("+");
                     afficherExpression();
-                    afficherResultat();
-                } catch (ArithmeticException e) {
+                } catch (ArithmeticException e){
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case R.id.btnPlus:
-                calculatrice.saisir('+');
-                afficherExpression();
-                break;
             case R.id.btnMoins:
-                calculatrice.saisir('-');
-                afficherExpression();
+                try {
+                    calculatrice.saisirOperateur("-");
+                    afficherExpression();
+                } catch (ArithmeticException e){
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btnMulti:
-                calculatrice.saisir('*');
-                afficherExpression();
+                try {
+                    calculatrice.saisirOperateur("*");
+                    afficherExpression();
+                } catch (ArithmeticException e){
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btnDivi:
-                calculatrice.saisir('/');
-                afficherExpression();
-                break;
-            case R.id.btnEgal:
                 try {
-                    calculatrice.calculer();
-                    afficherResultat();
-                } catch (ArithmeticException e) {
+                    calculatrice.saisirOperateur("/");
+                    afficherExpression();
+                } catch (ArithmeticException e){
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.btnSigne:
+                calculatrice.signe();
+                if(calculatrice.getBtnEgal()){
+                    afficherResultat();
+                }
+                else {
+                    afficherExpression();
                 }
                 break;
             case R.id.btnRacine:
-                calculatrice.racineCarree();
-                afficherExpression();
-                afficherResultat();
+                try {
+                    calculatrice.racineCarree();
+                    if(calculatrice.getBtnEgal()){
+                        afficherResultat();
+                    }
+                    else {
+                        afficherExpression();
+                    }
+                } catch (ArithmeticException e) {
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btnPourcent:
                 calculatrice.pourcentage();
-                afficherExpression();
-                afficherResultat();
+                if(calculatrice.getBtnEgal()){
+                    afficherResultat();
+                }
+                else {
+                    afficherExpression();
+                }
                 break;
             case R.id.btnInverse:
                 try {
                     calculatrice.inverse();
-                    afficherExpression();
+                    if(calculatrice.getBtnEgal()){
+                        afficherResultat();
+                    }
+                    else {
+                        afficherExpression();
+                    }
+                } catch (ArithmeticException e){
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.btnEgal:
+                try {
+                    calculatrice.evaluer();
                     afficherResultat();
-                } catch (ArithmeticException e) {
+                } catch(ArithmeticException e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btnRetour:
-                calculatrice.retourner();
-                afficherExpression();
-               break;
+                try {
+                    calculatrice.retour();
+                    afficherExpression();
+                } catch (ArithmeticException e) {
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+                break;
             case R.id.btnEffacer:
                 try {
                     calculatrice.effacer();
@@ -177,9 +214,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.btnEffacerTout:
-                calculatrice.effacerTout();
-                afficherExpression();
-                afficherResultat();
+                try {
+                    calculatrice.effacerTout();
+                    afficherExpression();
+                    afficherResultat();
+                } catch (ArithmeticException e){
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
                 break;
             default:
                 Toast.makeText(getApplicationContext(),"Touche invalide",Toast.LENGTH_SHORT).show();
