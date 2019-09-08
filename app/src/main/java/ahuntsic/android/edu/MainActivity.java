@@ -2,6 +2,7 @@ package ahuntsic.android.edu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ajouterListener();
         afficherResultat();
     }
-
+    
     /**
      * Afficher l'expression dans le premier écran
      */
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * Afficher le résultat dans le deuxième écran
      */
     public void afficherResultat(){
-        String resultat = calculatrice.getResultat().toString();
+        String resultat = calculatrice.getResultat();
         String affichage = (resultat.length() > MAX_LONGUEUR) ? resultat.substring(0, MAX_LONGUEUR) : resultat;
         txtResultat.setText(affichage);
     }
