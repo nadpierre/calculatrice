@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ajouterListener();
         afficherResultat();
     }
-    
+
     /**
      * Afficher l'expression dans le premier écran
      */
@@ -147,12 +147,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.btnSigne:
-                calculatrice.signe();
-                if(calculatrice.getBtnEgal()){
-                    afficherResultat();
-                }
-                else {
-                    afficherExpression();
+                try {
+                    calculatrice.signe();
+                    if(calculatrice.getBtnEgal()){
+                        afficherResultat();
+                    }
+                    else {
+                        afficherExpression();
+                    }
+                } catch (ArithmeticException e) {
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btnRacine:
@@ -169,12 +173,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.btnPourcent:
-                calculatrice.pourcentage();
-                if(calculatrice.getBtnEgal()){
-                    afficherResultat();
-                }
-                else {
-                    afficherExpression();
+                try {
+                    calculatrice.pourcentage();
+                    if(calculatrice.getBtnEgal()){
+                        afficherResultat();
+                    }
+                    else {
+                        afficherExpression();
+                    }
+                } catch (ArithmeticException e) {
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btnInverse:

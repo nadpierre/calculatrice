@@ -4,14 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/txtExpression"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:textSize="30dp"
-        android:background="@color/colorBlue"
-        android:textColor="@color/colorWhite"/>
+        <TextView
+            android:id="@+id/txtExpression"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:background="@color/colorBlue"
+            android:textColor="@color/colorWhite"/>
     <TextView
         android:id="@+id/txtResultat"
         android:layout_width="match_parent"

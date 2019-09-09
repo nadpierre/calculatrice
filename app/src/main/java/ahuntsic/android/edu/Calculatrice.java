@@ -68,6 +68,9 @@ public class Calculatrice {
      * @param chiffre
      */
     public void saisirChiffre(String chiffre){
+        if(btnEgal){
+            setExpression("");
+        }
         setBtnEgal(false);
         expression += chiffre;
         nombreTemp += chiffre;
@@ -99,18 +102,18 @@ public class Calculatrice {
      * Effacer le dernier caractère de l'expression
      */
     public void retour() throws ArithmeticException {
-        if(expression.length() > 0){
+        if(expression.length() > 0 && !btnEgal){
             setExpression(expression.substring(0, expression.length() -1));
         }
         else {
-            throw new ArithmeticException("Chaîne vide");
+             throw new ArithmeticException("Expression vide");
         }
     }
 
     /**
      * Inverser le signe d'un nombre
      */
-    public void signe(){
+    public void signe() throws ArithmeticException {
         //Inverser le dernier résultat
         if(btnEgal) {
             setResultat(resultat * -1);
@@ -118,16 +121,22 @@ public class Calculatrice {
         }
         //Inverser le dernier nombre saisi
         else {
-            Double negatif = Double.parseDouble(nombreTemp) * -1;
-            String chaineNegatif = negatif.toString();
-            setExpression(expression.substring(0, expression.length() - nombreTemp.length()));
-            if(negatif == Math.floor(negatif)){
-                setNombreTemp(chaineNegatif.substring(0, chaineNegatif.length() - 2));
+            if(!expression.isEmpty() && !nombreTemp.isEmpty()) {
+                Double negatif = Double.parseDouble(nombreTemp) * -1;
+                String chaineNegatif = negatif.toString();
+                setExpression(expression.substring(0, expression.length() - nombreTemp.length()));
+                if(negatif == Math.floor(negatif)){
+                    setNombreTemp(chaineNegatif.substring(0, chaineNegatif.length() - 2));
+                }
+                else {
+                    setNombreTemp(chaineNegatif);
+                }
+                expression += nombreTemp;
             }
             else {
-                setNombreTemp(chaineNegatif);
+                throw new ArithmeticException("Erreur");
             }
-            expression += nombreTemp;
+
         }
     }
 
@@ -148,21 +157,26 @@ public class Calculatrice {
         }
         //Inverser le dernier nombre saisi
         else {
-            Double nombre = Double.parseDouble(nombreTemp);
-            if(nombre >= 0){
-                Double racine = Math.sqrt(nombre);
-                String racineChaine = racine.toString();
-                setExpression(expression.substring(0, expression.length() - nombreTemp.length()));
-                if(racine == Math.floor(racine)){
-                    setNombreTemp(racineChaine.substring(0, racineChaine.length() -2));
+            if(!expression.isEmpty() && !nombreTemp.isEmpty()) {
+                Double nombre = Double.parseDouble(nombreTemp);
+                if(nombre >= 0){
+                    Double racine = Math.sqrt(nombre);
+                    String racineChaine = racine.toString();
+                    setExpression(expression.substring(0, expression.length() - nombreTemp.length()));
+                    if(racine == Math.floor(racine)){
+                        setNombreTemp(racineChaine.substring(0, racineChaine.length() -2));
+                    }
+                    else {
+                        setNombreTemp(racineChaine);
+                    }
+                    expression += nombreTemp;
                 }
                 else {
-                    setNombreTemp(racineChaine);
+                    throw new ArithmeticException("Racine carrée d'un nombre négatif");
                 }
-                expression += nombreTemp;
             }
             else {
-                throw new ArithmeticException("Racine carrée d'un nombre négatif");
+                throw new ArithmeticException("Erreur");
             }
         }
     }
@@ -170,7 +184,7 @@ public class Calculatrice {
     /**
      * Convertir un nombre en pourcentage
      */
-    public void pourcentage() {
+    public void pourcentage() throws ArithmeticException {
         //Inverser le dernier résultat
         if(btnEgal) {
             setResultat(resultat / 100);
@@ -178,16 +192,22 @@ public class Calculatrice {
         }
         //Inverser le dernier nombre saisi
         else {
-            Double pourcent = Double.parseDouble(nombreTemp) / 100;
-            String pourcentChaine = pourcent.toString();
-            setExpression(expression.substring(0, expression.length() - nombreTemp.length()));
-            if(pourcent == Math.floor(pourcent)) {
-                setNombreTemp(pourcentChaine.substring(0, pourcentChaine.length() - 2));
+            if(!expression.isEmpty() && !nombreTemp.isEmpty()) {
+                Double pourcent = Double.parseDouble(nombreTemp) / 100;
+                String pourcentChaine = pourcent.toString();
+                setExpression(expression.substring(0, expression.length() - nombreTemp.length()));
+                if(pourcent == Math.floor(pourcent)) {
+                    setNombreTemp(pourcentChaine.substring(0, pourcentChaine.length() - 2));
+                }
+                else {
+                    setNombreTemp(pourcentChaine);
+                }
+                expression += nombreTemp;
             }
             else {
-                setNombreTemp(pourcentChaine);
+                throw new ArithmeticException("Erreur");
             }
-            expression += nombreTemp;
+
         }
     }
 
@@ -208,22 +228,28 @@ public class Calculatrice {
         }
         //Inverser le dernier nombre saisi
         else {
-            Double nombre = Double.parseDouble(nombreTemp);
-            if(nombre != 0){
-                Double inverse = 1 / nombre;
-                String inverseChaine = inverse.toString();
-                setExpression(expression.substring(0, expression.length() - nombreTemp.length()));
-                if(inverse == Math.floor(inverse)){
-                    setNombreTemp(inverseChaine.substring(0, inverseChaine.length() -2));
+            if(!expression.isEmpty() && !nombreTemp.isEmpty()) {
+                Double nombre = Double.parseDouble(nombreTemp);
+                if(nombre != 0){
+                    Double inverse = 1 / nombre;
+                    String inverseChaine = inverse.toString();
+                    setExpression(expression.substring(0, expression.length() - nombreTemp.length()));
+                    if(inverse == Math.floor(inverse)){
+                        setNombreTemp(inverseChaine.substring(0, inverseChaine.length() -2));
+                    }
+                    else {
+                        setNombreTemp(inverseChaine);
+                    }
+                    expression += nombreTemp;
                 }
                 else {
-                    setNombreTemp(inverseChaine);
+                    throw new ArithmeticException("Division par zéro");
                 }
-                expression += nombreTemp;
             }
             else {
-                throw new ArithmeticException("Division par zéro");
+                throw new ArithmeticException("Erreur");
             }
+
         }
     }
 
@@ -316,13 +342,12 @@ public class Calculatrice {
      * @throws ArithmeticException
      */
     public void effacer() throws ArithmeticException {
-        if(!nombreTemp.isEmpty()){
+        if(!btnEgal && !nombreTemp.isEmpty()){
             setExpression(expression.substring(0, expression.length() - nombreTemp.length()));
             setNombreTemp("");
-            setBtnEgal(false);
         }
         else {
-            throw new ArithmeticException("Dernier nombre déjà effacé");
+            throw new ArithmeticException("Erreur");
         }
     }
 
