@@ -275,7 +275,7 @@ public class Calculatrice {
 
         //Extraire les opérateurs de la chaîne de caractères
         try {
-            Pattern regex = Pattern.compile("(?<=[0-9])[\\+\\-\\*\\/]-?");
+            Pattern regex = Pattern.compile("[\\+\\-\\*\\/]-?");
             Matcher regexMatcher = regex.matcher(expression);
             while (regexMatcher.find()) {
                 operateurs.add(regexMatcher.group());
@@ -284,13 +284,19 @@ public class Calculatrice {
             throw new ArithmeticException("Expression invalide");
         }
 
-        //L'expression doit débuter et terminer par un nombre
-        if(nombres.size() != operateurs.size() + 1){
-            throw new ArithmeticException("Expression invalide");
-        }
-
         //Effectuer le calcul
-        resultat = nombres.get(0);
+        if(nombres.size() == operateurs.size()){//si le premier nombre est négatif
+            if(operateurs.get(0).equals("-")) {
+                resultat = nombres.get(0) * -1;
+                operateurs.remove(0);
+            }
+            else {
+                throw new ArithmeticException("Expression invalide");
+            }
+        }
+        else if(nombres.size() == operateurs.size() + 1){
+            resultat = nombres.get(0);
+        }
         for(int i = 1; i < nombres.size(); i++){
             String operateur = operateurs.get(i - 1);
             Double valeur = nombres.get(i);
